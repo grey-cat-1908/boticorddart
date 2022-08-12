@@ -1,6 +1,7 @@
 import 'package:boticord/src/models/bot.dart';
 import 'package:boticord/src/models/comment.dart';
 import 'package:boticord/src/models/botstats.dart';
+import 'package:boticord/src/models/shortbot.dart';
 import 'package:boticord/src/models/usercomments.dart';
 
 import 'rest.dart';
@@ -68,5 +69,16 @@ class BotiCord {
         '/profile/$userId/comments',
       ),
     );
+  }
+
+  Future<List<ShortBot>> getUserBots(String userId) async {
+    final bots = await _rest?.request(
+        'GET',
+        '/bots/$userId'
+    );
+
+    return [
+      for (final bot in bots) ShortBot.parseJson(bot)
+    ];
   }
 }
