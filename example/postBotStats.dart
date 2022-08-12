@@ -1,5 +1,4 @@
 import 'package:boticord/boticord.dart';
-import 'package:boticord/src/models/bot.dart';
 import 'package:boticord/src/models/botstats.dart';
 
 void main() async {
