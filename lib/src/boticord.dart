@@ -1,4 +1,5 @@
 import 'package:boticord/src/models/bot.dart';
+import 'package:boticord/src/models/botstats.dart';
 
 import 'rest.dart';
 
@@ -25,6 +26,14 @@ class BotiCord {
         'GET',
         '/bot/$botId',
       ),
+    );
+  }
+
+  Future postBotStats(BotStats stats) async {
+    await _rest?.request(
+      'POST',
+      '/stats',
+      body: stats.toJson()
     );
   }
 }

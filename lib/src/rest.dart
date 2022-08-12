@@ -30,6 +30,7 @@ class BotiCordRest {
 
     req.headers.contentType =
         ContentType('application', 'json', charset: 'utf-8');
+    req.headers.add('Authorization', HeaderValue(token!));
 
     if (body.isNotEmpty) {
       req.add(utf8.encode(jsonEncode(body)));
