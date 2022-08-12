@@ -7,3 +7,4 @@ export 'src/models/shortbot.dart';
 export 'src/models/usercomments.dart';
 export 'src/models/server.dart';
 export 'src/models/serverinfo.dart';
+export 'src/models/serverstats.dart';

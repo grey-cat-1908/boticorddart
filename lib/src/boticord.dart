@@ -3,6 +3,7 @@ import 'package:boticord/src/models/comment.dart';
 import 'package:boticord/src/models/botstats.dart';
 import 'package:boticord/src/models/shortbot.dart';
 import 'package:boticord/src/models/usercomments.dart';
+import 'package:boticord/src/models/serverstats.dart';
 
 import 'models/server.dart';
 import 'rest.dart';
@@ -47,6 +48,14 @@ class BotiCord {
       'POST',
       '/stats',
       body: stats.toJson()
+    );
+  }
+
+  Future postServerStats(ServerStats stats) async {
+    await _rest?.request(
+        'POST',
+        '/server',
+        body: stats.toJson()
     );
   }
 
