@@ -4,6 +4,7 @@ import 'package:boticord/src/models/botstats.dart';
 import 'package:boticord/src/models/shortbot.dart';
 import 'package:boticord/src/models/usercomments.dart';
 import 'package:boticord/src/models/serverstats.dart';
+import 'package:boticord/src/models/profile.dart';
 
 import 'models/server.dart';
 import 'rest.dart';
@@ -39,6 +40,15 @@ class BotiCord {
       await _rest?.request(
         'GET',
         '/server/$serverId',
+      ),
+    );
+  }
+
+  Future<Profile> getUserInfo(String userId) async {
+    return Profile.parseJson(
+      await _rest?.request(
+        'GET',
+        '/profile/$userId',
       ),
     );
   }
