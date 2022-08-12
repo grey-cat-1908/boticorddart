@@ -1,5 +1,9 @@
 export 'src/models/botinfo.dart';
 export 'src/models/bot.dart';
-export 'src/models/botlinks.dart';
+export 'src/models/links.dart';
 export 'src/models/botstats.dart';
 export 'src/models/comment.dart';
+export 'src/models/shortbot.dart';
+export 'src/models/usercomments.dart';
+export 'src/models/server.dart';
+export 'src/models/serverinfo.dart';

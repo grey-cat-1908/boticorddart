@@ -2,15 +2,15 @@ import 'botinfo.dart';
 
 class Bot {
   final BotInfo information;
-  final String? id;
+  final String id;
+  final List links;
   final String? shortCode;
-  final List? links;
 
   Bot({
     required this.information,
-    this.id,
+    required this.id,
+    required this.links,
     this.shortCode,
-    this.links,
   });
 
   Bot.parseJson(

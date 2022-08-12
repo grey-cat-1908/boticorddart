@@ -1,5 +1,5 @@
 import 'package:boticord/boticord.dart';
-import 'package:boticord/src/models/bot.dart';
+import 'package:boticord/models.dart';
 
 void main() async {
   final client = BotiCord(

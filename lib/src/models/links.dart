@@ -1,4 +1,4 @@
-class BotLinks {
+class Links {
   final String? invite;
   final String? site;
   final String? youtube;
@@ -6,7 +6,7 @@ class BotLinks {
   final String? steam;
   final String? vk;
 
-  BotLinks({
+  Links({
     this.invite,
     this.site,
     this.youtube,
@@ -15,7 +15,7 @@ class BotLinks {
     this.vk
   });
 
-  BotLinks.parseJson(
+  Links.parseJson(
       Map<String, dynamic> json
   ):
     invite = json['invite'],

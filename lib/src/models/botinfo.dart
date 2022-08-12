@@ -1,7 +1,7 @@
 import 'package:boticord/src/models/botstats.dart';
-import 'package:boticord/src/models/botlinks.dart';
+import 'package:boticord/src/models/links.dart';
 
-import 'botlinks.dart';
+import 'links.dart';
 
 class BotInfo {
   final int bumps;
@@ -10,7 +10,7 @@ class BotInfo {
   final int permissions;
   final List<String?>? tags;
   final List<String?>? developers;
-  final BotLinks? links;
+  final Links? links;
   final String? library;
   final String? shortDescription;
   final String? longDescription;
@@ -43,7 +43,7 @@ class BotInfo {
     prefix = json['prefix'],
     tags = [for (final tag in json['tags']) tag],
     developers = [for (final dev in json['developers']) dev],
-    links = BotLinks.parseJson(json['links']),
+    links = Links.parseJson(json['links']),
     library = json['library'],
     shortDescription = json['shortDescription'],
     longDescription = json['longDescription'],

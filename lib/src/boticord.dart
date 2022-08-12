@@ -4,6 +4,7 @@ import 'package:boticord/src/models/botstats.dart';
 import 'package:boticord/src/models/shortbot.dart';
 import 'package:boticord/src/models/usercomments.dart';
 
+import 'models/server.dart';
 import 'rest.dart';
 
 class BotiCord {
@@ -28,6 +29,15 @@ class BotiCord {
       await _rest?.request(
         'GET',
         '/bot/$botId',
+      ),
+    );
+  }
+
+  Future<Server> getServerInfo(String serverId) async {
+    return Server.parseJson(
+      await _rest?.request(
+        'GET',
+        '/server/$serverId',
       ),
     );
   }
