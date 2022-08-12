@@ -1,6 +1,7 @@
 import 'package:boticord/src/models/bot.dart';
 import 'package:boticord/src/models/comment.dart';
 import 'package:boticord/src/models/botstats.dart';
+import 'package:boticord/src/models/usercomments.dart';
 
 import 'rest.dart';
 
@@ -58,5 +59,14 @@ class BotiCord {
     return [
       for (final comment in comments) Comment.parseJson(comment)
     ];
+  }
+
+  Future<UserComments> getUserComments(String userId) async {
+    return UserComments.parseJson(
+      await _rest?.request(
+        'GET',
+        '/profile/$userId/comments',
+      ),
+    );
   }
 }
