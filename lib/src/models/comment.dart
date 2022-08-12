@@ -1,4 +1,4 @@
-class BotComment {
+class Comment {
   final String userID;
   final String text;
   final int vote;
@@ -6,7 +6,7 @@ class BotComment {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  BotComment({
+  Comment({
     required this.userID,
     required this.text,
     required this.vote,
@@ -15,7 +15,7 @@ class BotComment {
     this.updatedAt
   });
 
-  BotComment.parseJson(
+  Comment.parseJson(
       Map<String, dynamic> json
   ):
     userID = json['userID'],

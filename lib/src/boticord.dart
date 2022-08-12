@@ -1,5 +1,5 @@
 import 'package:boticord/src/models/bot.dart';
-import 'package:boticord/src/models/botcomment.dart';
+import 'package:boticord/src/models/comment.dart';
 import 'package:boticord/src/models/botstats.dart';
 
 import 'rest.dart';
@@ -38,14 +38,25 @@ class BotiCord {
     );
   }
 
-  Future<List<BotComment>> getBotComments(String botId) async {
+  Future<List<Comment>> getBotComments(String botId) async {
     final comments = await _rest?.request(
         'GET',
         '/bot/$botId/comments'
     );
 
     return [
-      for (final comment in comments) BotComment.parseJson(comment)
+      for (final comment in comments) Comment.parseJson(comment)
+    ];
+  }
+
+  Future<List<Comment>> getServerComments(String serverId) async {
+    final comments = await _rest?.request(
+        'GET',
+        '/server/$serverId/comments'
+    );
+
+    return [
+      for (final comment in comments) Comment.parseJson(comment)
     ];
   }
 }
