@@ -2,6 +2,7 @@ import 'package:boticord/src/models/bot.dart';
 import 'package:boticord/src/models/comment.dart';
 import 'package:boticord/src/models/botstats.dart';
 import 'package:boticord/src/models/shortbot.dart';
+import 'package:boticord/src/models/shortedllnk.dart';
 import 'package:boticord/src/models/usercomments.dart';
 import 'package:boticord/src/models/serverstats.dart';
 import 'package:boticord/src/models/profile.dart';
@@ -111,20 +112,67 @@ class BotiCord {
     ];
   }
 
-  Future getMyShortedLinks() async {
-    await _rest?.request(
+  Future<List<ShortedLink>> getMyShortedLinks() async {
+    final links = await _rest?.request(
         'POST',
-        '/links/get',
+        '/links/get'
     );
+
+    return [
+      for (final link in links) ShortedLink.parseJson(link)
+    ];
   }
 
-  Future searchMyShortedLinks(String code) async {
-    await _rest?.request(
+  Future<List<ShortedLink>> searchMyShortedLinks(String code) async {
+    final links = await _rest?.request(
         'POST',
         '/links/get',
         body: {
           'code': code
         }
+    );
+
+    return [
+      for (final link in links) ShortedLink.parseJson(link)
+    ];
+  }
+
+  Future createShortedLink(
+      String code,
+      String link,
+      {
+        int domain = 1
+      }
+  ) async {
+    await _rest?.request(
+        'POST',
+        '/link/create',
+        body: {
+          'code': code,
+          'link': link,
+          'domain': domain
+        }
+    );
+  }
+
+  Future deleteShortedLink(
+      String code,
+      {
+        int? domain
+      }
+      ) async {
+    Map<String, dynamic> body = {
+      'code': code,
+    };
+
+    if (domain != null) {
+      body['domain'] = domain;
+    }
+
+    await _rest?.request(
+        'POST',
+        '/link/delete',
+        body: body
     );
   }
 }
