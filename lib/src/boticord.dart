@@ -110,4 +110,21 @@ class BotiCord {
       for (final bot in bots) ShortBot.parseJson(bot)
     ];
   }
+
+  Future getMyShortedLinks() async {
+    await _rest?.request(
+        'POST',
+        '/links/get',
+    );
+  }
+
+  Future searchMyShortedLinks(String code) async {
+    await _rest?.request(
+        'POST',
+        '/links/get',
+        body: {
+          'code': code
+        }
+    );
+  }
 }
