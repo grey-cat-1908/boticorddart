@@ -1,4 +1,4 @@
-import 'links.dart';
+import 'package:boticord/src/models/links.dart';
 
 class ServerInfo {
   final String name;

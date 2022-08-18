@@ -1,4 +1,4 @@
-import 'comment.dart';
+import 'package:boticord/src/models/comment.dart';
 
 class UserComments {
   final List<Comment>? bots;

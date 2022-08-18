@@ -1,4 +1,4 @@
-import 'botinfo.dart';
+import 'package:boticord/src/models/botinfo.dart';
 
 class Bot {
   final BotInfo information;

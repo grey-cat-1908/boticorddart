@@ -6,16 +6,26 @@ import 'package:boticord/src/models/shortedllnk.dart';
 import 'package:boticord/src/models/usercomments.dart';
 import 'package:boticord/src/models/serverstats.dart';
 import 'package:boticord/src/models/profile.dart';
+import 'package:boticord/src/models/server.dart';
 
-import 'models/server.dart';
-import 'rest.dart';
+import 'package:boticord/src/rest.dart';
 
+/// A wrapper around BotiCord API.
+///
+/// In BotiCord API v2 there are some changes with token.
+/// [Read more here](https://docs.boticord.top/topics/v1vsv2/)
 class BotiCord {
+  /// BotiCord Token
   final String? token;
+
+  // BotiCord API version
   int? version;
 
   final BotiCordRest? _rest;
 
+  /// Create a new instance of [BotiCord] with [token].
+  /// Also you can set [version] to use another BotiCord API version.
+  /// (default: v1)
   BotiCord({
     required this.token,
     this.version
@@ -27,6 +37,7 @@ class BotiCord {
       token: token
   );
 
+  /// Get information about a specific bot by it's [botId].
   Future<Bot> getBotInfo(String botId) async {
     return Bot.parseJson(
       await _rest?.request(
@@ -36,6 +47,7 @@ class BotiCord {
     );
   }
 
+  /// Get information about a specific server by it's [serverId].
   Future<Server> getServerInfo(String serverId) async {
     return Server.parseJson(
       await _rest?.request(
@@ -45,6 +57,7 @@ class BotiCord {
     );
   }
 
+  /// Get information about a specific server by it's [userId].
   Future<Profile> getUserInfo(String userId) async {
     return Profile.parseJson(
       await _rest?.request(
@@ -54,6 +67,17 @@ class BotiCord {
     );
   }
 
+  /// Post current bot's [stats] method.
+  ///
+  /// ```dart
+  /// final BotStats stats = BotStats(
+  ///     servers: 150,
+  ///     users: null,
+  ///     shards: 1
+  /// );
+  ///
+  /// await client.postBotStats(stats);
+  ///  ```
   Future postBotStats(BotStats stats) async {
     await _rest?.request(
       'POST',
@@ -62,6 +86,12 @@ class BotiCord {
     );
   }
 
+  /// Post current server's [stats] method.
+  ///
+  /// Remember, that only Boticord-Service Bots can do it in global,
+  /// other will get an 403 error.
+  /// (but it may works for custom bots, but you need a special API-token)
+  ///
   Future postServerStats(ServerStats stats) async {
     await _rest?.request(
         'POST',
@@ -70,6 +100,7 @@ class BotiCord {
     );
   }
 
+  /// Get List of bot's comments.
   Future<List<Comment>> getBotComments(String botId) async {
     final comments = await _rest?.request(
         'GET',
@@ -81,6 +112,7 @@ class BotiCord {
     ];
   }
 
+  /// Get List of server's comments.
   Future<List<Comment>> getServerComments(String serverId) async {
     final comments = await _rest?.request(
         'GET',
@@ -92,6 +124,7 @@ class BotiCord {
     ];
   }
 
+  /// Get List of user's comments.
   Future<UserComments> getUserComments(String userId) async {
     return UserComments.parseJson(
       await _rest?.request(
@@ -101,6 +134,7 @@ class BotiCord {
     );
   }
 
+  /// Get List of user's bots.
   Future<List<ShortBot>> getUserBots(String userId) async {
     final bots = await _rest?.request(
         'GET',
@@ -112,6 +146,7 @@ class BotiCord {
     ];
   }
 
+  /// Get List of shorted by current user links.
   Future<List<ShortedLink>> getMyShortedLinks() async {
     final links = await _rest?.request(
         'POST',
@@ -123,6 +158,7 @@ class BotiCord {
     ];
   }
 
+  /// Get List of shorted by current user links (with the provided [code]).
   Future<List<ShortedLink>> searchMyShortedLinks(String code) async {
     final links = await _rest?.request(
         'POST',
@@ -137,24 +173,28 @@ class BotiCord {
     ];
   }
 
-  Future createShortedLink(
+  /// Creates new shorted link (with specified parameters).
+  Future<ShortedLink> createShortedLink(
       String code,
       String link,
       {
         int domain = 1
       }
   ) async {
-    await _rest?.request(
-        'POST',
-        '/link/create',
-        body: {
-          'code': code,
-          'link': link,
-          'domain': domain
-        }
+    return ShortedLink.parseJson(
+        await _rest?.request(
+          'POST',
+          '/link/create',
+          body: {
+            'code': code,
+            'link': link,
+            'domain': domain
+          }
+        )
     );
   }
 
+  /// Delete shorted link (with specified [code]).
   Future deleteShortedLink(
       String code,
       {

@@ -1,4 +1,4 @@
-import 'serverinfo.dart';
+import 'package:boticord/src/models/serverinfo.dart';
 
 class Server {
   final String status;
