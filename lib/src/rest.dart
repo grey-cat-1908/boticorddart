@@ -7,6 +7,7 @@ class BotiCordRest {
 
   BotiCordRest({required this.baseUrl, this.token});
 
+  /// Makes a request to the BotiCord API.
   Future<dynamic> request(
     String method,
     String path,

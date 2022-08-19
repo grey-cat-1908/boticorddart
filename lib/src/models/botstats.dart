@@ -1,6 +1,12 @@
+/// This model represents Bot's stats.
 class BotStats {
+  /// Cached servers count.
   final int? servers;
+
+  /// Cached users count.
   final int? users;
+
+  /// Bot's shards count.
   final int? shards;
 
   BotStats({

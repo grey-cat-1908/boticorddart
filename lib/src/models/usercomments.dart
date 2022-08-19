@@ -1,7 +1,11 @@
 import 'package:boticord/src/models/comment.dart';
 
+/// This model represents user's comments
 class UserComments {
+  /// Comments on bots pages
   final List<Comment>? bots;
+
+  /// Comments on servers pages
   final List<Comment>? servers;
 
   UserComments({

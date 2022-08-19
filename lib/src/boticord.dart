@@ -5,17 +5,18 @@ import 'package:boticord/src/models/shortbot.dart';
 import 'package:boticord/src/models/shortedllnk.dart';
 import 'package:boticord/src/models/usercomments.dart';
 import 'package:boticord/src/models/serverstats.dart';
+import 'package:boticord/src/models/serverstatsresponse.dart';
 import 'package:boticord/src/models/profile.dart';
 import 'package:boticord/src/models/server.dart';
 
 import 'package:boticord/src/rest.dart';
 
 /// A wrapper around BotiCord API.
-///
-/// In BotiCord API v2 there are some changes with token.
-/// [Read more here](https://docs.boticord.top/topics/v1vsv2/)
 class BotiCord {
   /// BotiCord Token
+  ///
+  /// In BotiCord API v2 there are some changes with token.
+  /// [Read more here](https://docs.boticord.top/topics/v1vsv2/)
   final String? token;
 
   // BotiCord API version
@@ -25,7 +26,7 @@ class BotiCord {
 
   /// Create a new instance of [BotiCord] with [token].
   /// Also you can set [version] to use another BotiCord API version.
-  /// (default: v1)
+  /// (default: 1)
   BotiCord({
     required this.token,
     this.version
@@ -92,11 +93,13 @@ class BotiCord {
   /// other will get an 403 error.
   /// (but it may works for custom bots, but you need a special API-token)
   ///
-  Future postServerStats(ServerStats stats) async {
-    await _rest?.request(
+  Future<ServerStatsResponse> postServerStats(ServerStats stats) async {
+    return ServerStatsResponse.parseJson(
+      await _rest?.request(
         'POST',
         '/server',
         body: stats.toJson()
+      )
     );
   }
 

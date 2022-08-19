@@ -1,21 +1,45 @@
 import 'package:boticord/src/models/botstats.dart';
 import 'package:boticord/src/models/links.dart';
 
-import 'links.dart';
-
+/// This model represents Information about the bot.
 class BotInfo {
+  /// Bumps Count,
   final int bumps;
+
+  /// How many times users have added the bot?
   final int added;
+
+  /// Bot's prefix.
   final String? prefix;
+
+  /// Bot's (required) permissions.
   final int permissions;
+
+  /// Bot's search-tags.
   final List<String?>? tags;
+
+  /// Bot's developers list.
   final List<String?>? developers;
+
+  /// Bot's social medias.
   final Links? links;
+
+  /// Library bot is based on.
   final String? library;
+
+  /// Bot's short description.
   final String? shortDescription;
+
+  /// Bot's long description.
   final String? longDescription;
+
+  /// Bot's badge.
   final String? badge;
+
+  /// Bot's stats.
   final BotStats? stats;
+
+  /// Bot's approval status.
   final String? status;
 
   BotInfo({

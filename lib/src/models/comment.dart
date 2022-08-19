@@ -1,9 +1,21 @@
+/// This model represents single comment.
 class Comment {
+  /// Comment author's id.
   final String userID;
+
+  /// Comment content.
   final String text;
+
+  /// Comment vote.
   final int vote;
+
+  /// Was comment updated?
   final bool isUpdated;
+
+  /// Comment creation timestamp.
   final DateTime? createdAt;
+
+  /// Last comment edit timestamp.
   final DateTime? updatedAt;
 
   Comment({

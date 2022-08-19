@@ -1,15 +1,35 @@
 import 'package:boticord/src/models/links.dart';
 
+/// This model represents Information about the server.
 class ServerInfo {
+  /// Server's name.
   final String name;
+
+  /// Server's avatar.
   final String? avatar;
+
+  /// Server's members count
   final List<int?> members;
+
+  /// Server's owner.
   final String? owner;
+
+  /// Bumps count.
   final int bumps;
-  final List<String>  tags;
+
+  /// Server's search-tags.
+  final List<String> tags;
+
+  /// Server's social medias.
   final Links links;
+
+  /// Server's short description.
   final String? shortDescription;
+
+  /// Server's long description.
   final String? longDescription;
+
+  /// Server's badge.
   final String? badge;
 
   ServerInfo({

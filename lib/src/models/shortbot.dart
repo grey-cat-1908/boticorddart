@@ -1,5 +1,9 @@
+/// This model represents single bot.
 class ShortBot {
+  /// Bot's id.
   final String id;
+
+  /// Bot's page shortcode.
   final String? shortCode;
 
   ShortBot({

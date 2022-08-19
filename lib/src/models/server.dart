@@ -1,10 +1,20 @@
 import 'package:boticord/src/models/serverinfo.dart';
 
+/// Model represents a server.
 class Server {
+  /// Server's status.
   final String status;
+
+  /// Information about the server.
   final ServerInfo information;
+
+  /// Bot's links;
   final List links;
+
+  /// Server's Id.
   final String id;
+
+  /// Server's page short code.
   final String? shortCode;
 
   Server({

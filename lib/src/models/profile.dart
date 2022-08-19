@@ -1,13 +1,33 @@
+/// This model represents information about user.
 class Profile {
+  /// Id of the user
   final String id;
+
+  /// Custom status
   final String? status;
+
+  /// User's badge
   final String? badge;
+
+  /// User's Page shortcode
   final String? shortCode;
+
+  /// User's Website
   final String? site;
+
+  /// User's youtube channel
   final String? youtube;
+
+  /// User's twitch account
   final String? twitch;
+
+  /// User's steam profile
   final String? steam;
+
+  /// User's VK page
   final String? vk;
+
+  /// User's github profile
   final String? git;
 
   Profile({
